@@ -6,10 +6,11 @@ import {useDispatch, useSelector} from "react-redux";
 import * as yup from "yup";
 import Button from "@material-ui/core/Button";
 import {Dialog, DialogActions, DialogContent, DialogTitle, Slide} from "@material-ui/core";
-import DialogContentText from "@material-ui/core/DialogContentText";
+import {useStyles} from "../ProductListStyle";
+
 
 const CreateNewDish = () => {
-
+	const style = useStyles()
 	const dispatch = useDispatch()
 
 
@@ -28,6 +29,7 @@ const CreateNewDish = () => {
 		weight: yup.number()
 			.required('required'),
 	})
+
 	const Transition = React.forwardRef(function Transition(props, ref) {
 		return <Slide direction="up" ref={ref} {...props} />;
 	});
@@ -43,19 +45,18 @@ const CreateNewDish = () => {
 	};
 
 	return (
-		<div>
+		<div className={style.root} >
 			<Button variant="outlined" color="primary" onClick={handleClickOpen}>
 				add Dish
 			</Button>
 			<Dialog
 				open={open}
-				TransitionComponent={Transition}
-				keepMounted
 				onClose={handleClose}
-				aria-labelledby="alert-dialog-slide-title"
-				aria-describedby="alert-dialog-slide-description"
+				aria-labelledby="draggable-dialog-title"
 			>
-				<DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle>
+				<DialogTitle style={{ cursor: "move" }} id="draggable-dialog-title">
+					here you can create your own dish
+				</DialogTitle>
 				<DialogContent>
 					{
 						<Formik
@@ -117,25 +118,25 @@ const CreateNewDish = () => {
 										name='weight'
 										placeholder='weight'
 									/>
-									<Button onClick={handleClose} color="primary">
-										cancel
-									</Button>
-									<Button type='submit' variant="contained" color="primary">
-										Add
-									</Button>
+									<div className={style.root}>
+										<Button onClick={handleClose} color="primary">
+											cancel
+										</Button>
+										<Button type='submit' variant="contained" color="primary">
+											Add
+										</Button>
+									</div>
+
 								</div>
 
 							</Form>
 						</Formik>
 					}
 				</DialogContent>
-				<DialogActions>
-
-				</DialogActions>
 			</Dialog>
 		</div>
 	);
-};
+}
 
 
 export default CreateNewDish;

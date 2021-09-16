@@ -5,13 +5,8 @@ const DELETE_PRODUCT = 'DELETE_PRODUCT'
 const ADD_PRODUCT_LIST = 'ADD_PRODUCT_LIST'
 
 
-// const raw = localStorage.getItem('dataProduct')
-// const initialState = JSON.parse(raw)
 
-const initialState = []
-
-
-const productReducer = (state = initialState, action) => {
+const productReducer = (state = [], action) => {
 	switch (action.type) {
 		case SORT: {
 			if (action.sort === 'count') {
@@ -62,7 +57,6 @@ const productReducer = (state = initialState, action) => {
 export const sortData = (sort) => ({type: SORT, sort})
 export const deleteProduct = (idProduct) => ({type: DELETE_PRODUCT, idProduct})
 export const addProductList = (data) => ({type: ADD_PRODUCT_LIST, data})
-//export const addProduct = (dataObject) => ({type: ADD_PRODUCT, dataObject})
 
 
 //Thunks
@@ -75,8 +69,6 @@ export const addDataProducts = () => {
 
 
 export const addNewProduct = (dataObject) => {
-
-	//const newProduct = {...dataObject, id: }
 
 	return async (dispatch) => {
 

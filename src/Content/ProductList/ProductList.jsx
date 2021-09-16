@@ -18,7 +18,7 @@ const ProductList = () => {
 	return (
 		<div>
 			<div className={style.root}>
-				<p>sort by:</p>
+				<p className={style.p}>sort by:</p>
 				<ButtonGroup color="primary" aria-label="outlined primary button group">
 					<Button onClick={() => {
 						sortArrTo('name')
@@ -29,7 +29,7 @@ const ProductList = () => {
 				</ButtonGroup>
 			</div>
 			<ProductsCards/>
-			<CreateNewDish/>
+			<CreateNewDish />
 		</div>
 	);
 };

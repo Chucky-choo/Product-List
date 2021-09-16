@@ -15,8 +15,6 @@ const firebaseConfig = {
 };
 
 
-
-
 export const firebase = {
 	// Get a list of cities from database
 	async getData() {

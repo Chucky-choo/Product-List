@@ -6,9 +6,10 @@ export const useStyles = makeStyles({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
-
-		p: {
-			marginRight: 10
-		}
 	},
+	p: {
+		alignItems: 'center',
+		fontSize: 25,
+		marginRight: 10
+	}
 });

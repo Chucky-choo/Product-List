@@ -1,7 +1,16 @@
 import {NavLink} from "react-router-dom";
 import useStyles from "./productCardsStyle";
 import {useDispatch, useSelector} from "react-redux";
-import {Button, Card, CardActionArea, CardActions, CardContent, CardMedia, CircularProgress} from "@material-ui/core";
+import {
+	Button,
+	Card,
+	CardActionArea,
+	CardActions,
+	CardContent,
+	CardMedia,
+	CircularProgress,
+	Grid
+} from "@material-ui/core";
 import React from 'react';
 import ProductInfo from "../../ProductInfo/ProductInfo";
 import {deleteProduct} from "../../../redux/product-reducer";
@@ -21,7 +30,10 @@ const ProductsCards = () => {
 
 	if (usersData === undefined) {
 		return (
-			<CircularProgress/>
+			<Grid>
+				<CircularProgress/>
+			</Grid>
+
 		)
 	}
 
