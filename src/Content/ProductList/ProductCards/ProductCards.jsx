@@ -20,9 +20,8 @@ const ProductsCards = () => {
 	const dispatch = useDispatch()
 
 
-	const usersData = useSelector(store => store.product.Products)
+	const usersData = useSelector(store => store.product)
 	const classes = useStyles();
-
 
 	const deleteCard = (id) => {
 		dispatch(deleteProduct(id))
@@ -37,51 +36,52 @@ const ProductsCards = () => {
 		)
 	}
 
-
 	return (
 		<div className={classes.container}>
 			{usersData.map(el => {
 					return (
-						<Card className={classes.root} key={el.id}>
-							<CardActionArea>
-								<CardMedia
-									className={classes.media}
-									image={el.imageUrl}
-									title="Contemplative Reptile"
-								/>
-								<CardContent>
-									<ProductInfo
-										name={el.name}
-										count={el.count}
-										size={el.size}
-										weight={el.weight}
-										description={el.description}
-									/>
-								</CardContent>
-							</CardActionArea>
-							<CardActions>
-								<NavLink
-									to={`/Product/` + el.id}
-									className={classes.content}
-								>
-									<Button
-										variant="contained"
-										color="primary"
-									>
-										Details
-									</Button>
-								</NavLink>
-								<AlertDialogSlide
-									text={'Delete'}
-									cb={() => {
-										deleteCard(el.id)
-									}}
-									title={'You really want to delete this product?'}
-									NameRightButton={'Delete'}
-								/>
 
-							</CardActions>
-						</Card>
+							<Card className={classes.root}
+										key={el.id}
+							>
+								<CardActionArea>
+									<CardMedia
+										className={classes.media}
+										image={el.imageUrl}
+										title="Contemplative Reptile"
+									/>
+									<CardContent>
+										<ProductInfo
+											name={el.name}
+											count={el.count}
+											size={el.size}
+											weight={el.weight}
+											description={el.description}
+										/>
+									</CardContent>
+								</CardActionArea>
+								<CardActions>
+									<NavLink
+										to={`/Product/` + el.id}
+										className={classes.content}
+									>
+										<Button
+											variant="contained"
+											color="primary"
+										>
+											Details
+										</Button>
+									</NavLink>
+									<AlertDialogSlide
+										text={'Delete'}
+										cb={() => {deleteCard(el.id)}}
+										title={'You really want to delete this product?'}
+										NameRightButton={'Delete'}
+									/>
+
+								</CardActions>
+							</Card>
+
 					);
 				}
 			)}

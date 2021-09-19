@@ -1,12 +1,12 @@
 import React from 'react';
-import AlertDialogSlide from "../../Popup/Popup";
 import {Formik, Form} from 'formik';
 import MyTextField from "../../MyTextField/myTextField";
 import {useDispatch, useSelector} from "react-redux";
-import * as yup from "yup";
 import Button from "@material-ui/core/Button";
-import {Dialog, DialogActions, DialogContent, DialogTitle, Slide} from "@material-ui/core";
+import {Dialog, DialogContent, DialogTitle} from "@material-ui/core";
 import {useStyles} from "../ProductListStyle";
+import {addNewProduct} from "../../../redux/product-reducer";
+import {Validatione} from "./Validatione";
 
 
 const CreateNewDish = () => {
@@ -14,25 +14,9 @@ const CreateNewDish = () => {
 	const dispatch = useDispatch()
 
 
-	const Validatione = yup.object().shape({
-		name: yup.string()
-			.min(3, 'not enough characters')
-			.required('required'),
-		imageUrl: yup.string()
-			.min(5, 'not enough characters')
-			.required('required'),
-		count: yup.number()
-			.required('required'),
-		description: yup.string()
-			.min(5, 'not enough characters')
-			.required('required'),
-		weight: yup.number()
-			.required('required'),
-	})
+	const lengthArray = useSelector(store => store.product.length)
+	const lastElementId = useSelector(store => store.product[lengthArray - 1].id)
 
-	const Transition = React.forwardRef(function Transition(props, ref) {
-		return <Slide direction="up" ref={ref} {...props} />;
-	});
 
 	const [open, setOpen] = React.useState(false);
 
@@ -45,7 +29,7 @@ const CreateNewDish = () => {
 	};
 
 	return (
-		<div className={style.root} >
+		<div className={style.root}>
 			<Button variant="outlined" color="primary" onClick={handleClickOpen}>
 				add Dish
 			</Button>
@@ -54,7 +38,7 @@ const CreateNewDish = () => {
 				onClose={handleClose}
 				aria-labelledby="draggable-dialog-title"
 			>
-				<DialogTitle style={{ cursor: "move" }} id="draggable-dialog-title">
+				<DialogTitle style={{cursor: "move"}} id="draggable-dialog-title">
 					here you can create your own dish
 				</DialogTitle>
 				<DialogContent>
@@ -75,8 +59,8 @@ const CreateNewDish = () => {
 							}
 							validationSchema={Validatione}
 							onSubmit={(values, {setSubmitting}) => {
-
-								console.log({...values, id: 2})
+								console.log({...values, id: lastElementId + 1})
+								dispatch(addNewProduct({...values, id: lastElementId + 1}))
 								setSubmitting(false);
 								handleClose()
 							}}
@@ -126,9 +110,7 @@ const CreateNewDish = () => {
 											Add
 										</Button>
 									</div>
-
 								</div>
-
 							</Form>
 						</Formik>
 					}
@@ -137,6 +119,5 @@ const CreateNewDish = () => {
 		</div>
 	);
 }
-
 
 export default CreateNewDish;

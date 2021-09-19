@@ -1,10 +1,9 @@
 import React from 'react';
 import ProductsCards from "./ProductCards/ProductCards";
-import {Button, ButtonGroup, TextField} from "@material-ui/core";
+import {Button, ButtonGroup} from "@material-ui/core";
 import {useDispatch} from "react-redux";
 import {sortData} from "../../redux/product-reducer";
 import {useStyles} from "./ProductListStyle";
-import AlertDialogSlide from "../Popup/Popup";
 import CreateNewDish from "./CreateNewDish/CreateNewDish";
 
 const ProductList = () => {

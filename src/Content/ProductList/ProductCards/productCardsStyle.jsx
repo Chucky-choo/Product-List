@@ -1,22 +1,30 @@
 import {makeStyles} from "@material-ui/core/styles";
 
+const maxWidth = 663
+
 const useStyles = makeStyles({
 	container: {
 		marginBottom: 20,
 		padding: 20,
 		display: 'grid',
-		gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+		gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
 		gap: 24,
 	},
 
 	root: {
 		minHeight: 390,
-		minWidth: 200,
+		minWidth: 300,
 		maxWidth: 400,
 		maxHeight: 550,
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'space-between',
+	},
+	[`@media (max-width: ${maxWidth}px)`]: {
+		root: {
+			margin: '0 auto',
+			width: '85%'
+		}
 	},
 	media: {
 		height: 180,

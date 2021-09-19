@@ -2,16 +2,28 @@ import React, {useEffect} from 'react'
 import ProductList from "./Content/ProductList/ProductList";
 import {Redirect, Route, Switch} from "react-router-dom";
 import Product from "./Content/Product/Product";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {addDataProducts} from "./redux/product-reducer";
+import {CircularProgress, Grid} from "@material-ui/core";
 
 
 function App() {
 	const dispatch = useDispatch()
 
-	useEffect(async () => {
-		dispatch(addDataProducts())
-	}, [])
+	useEffect(async () => {dispatch(addDataProducts())}, [])
+
+	const usersData = useSelector(store => store.product)
+
+
+	//show preloader before data download
+	if (usersData === undefined || usersData.length === 0) {
+		return (
+			<Grid>
+				<CircularProgress/>
+			</Grid>
+
+		)
+	}
 
 	return (
 		<div className="App">

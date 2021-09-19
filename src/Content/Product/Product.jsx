@@ -9,7 +9,8 @@ const style = useStyles()
 
 	let matchId = props.match.params.idProduct
 
-	const ProductsData = useSelector(store => store.product.Products)
+	const ProductsData = useSelector(store => store.product)
+
 	const Product = ProductsData.find(item => item.id === +matchId);
 
 

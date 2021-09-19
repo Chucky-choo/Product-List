@@ -1,6 +1,5 @@
-// Initialize Firebase
 import {initializeApp} from "firebase/app";
-import {collection, getDocs, getFirestore} from "firebase/firestore/lite";
+import {collection, getDocs, getFirestore, addDoc} from "firebase/firestore/lite";
 
 
 const firebaseConfig = {
@@ -14,17 +13,23 @@ const firebaseConfig = {
 	measurementId: "G-D6Y2HN5VYP"
 };
 
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 export const firebase = {
-	// Get a list of cities from database
+	// Get a list of products from database
 	async getData() {
-		const app = initializeApp(firebaseConfig);
-		const db = getFirestore(app);
 		const productsCol = collection(db, 'Products');
 		const productSnapshot = await getDocs(productsCol);
 		const productsColList = productSnapshot.docs.map(doc => doc.data());
 		return productsColList;
-	}
+	},
 
+	// Add a new document in collection "Products"
+	async addNewDocumentProduct(data) {
+		await addDoc(collection(db, "Products"), data);
+	//	console.log("Document written with ID: ", docRef.id);
+	}
 
 }
