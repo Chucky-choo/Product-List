@@ -53,7 +53,7 @@ const productReducer = (state = [], action) => {
 
 //In the sort argument by name or quantity available
 export const sortData = (sort) => ({type: SORT, sort})
-export const deleteProduct = (idProduct) => ({type: DELETE_PRODUCT, idProduct})
+export const deleteProductAC = (idProduct) => ({type: DELETE_PRODUCT, idProduct})
 export const addProductList = (data) => ({type: ADD_PRODUCT_LIST, data})
 export const addProduct = (newProductData) => ({type: ADD_PRODUCT, newProductData})
 
@@ -69,10 +69,15 @@ export const addDataProducts = () => {
 
 export const addNewProduct = (newProductData) => {
 	return async (dispatch) => {
-		firebase.addNewDocumentProduct(newProductData)
+		await firebase.addNewDocumentProduct(newProductData)
 		dispatch(addProduct(newProductData))
-		//	const data = await firebase.getData()
-		//	dispatch(addProductList(data[0]))
+	}
+}
+
+export const deleteProduct = (documentId) => {
+	return async (dispatch) => {
+		await firebase.deleteDoc(documentId)
+		dispatch(deleteProductAC(documentId))
 	}
 }
 

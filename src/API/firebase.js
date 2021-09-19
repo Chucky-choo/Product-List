@@ -1,5 +1,5 @@
 import {initializeApp} from "firebase/app";
-import {collection, getDocs, getFirestore, addDoc} from "firebase/firestore/lite";
+import {collection, getDocs, getFirestore, setDoc, doc, deleteDoc } from "firebase/firestore/lite";
 
 
 const firebaseConfig = {
@@ -28,8 +28,12 @@ export const firebase = {
 
 	// Add a new document in collection "Products"
 	async addNewDocumentProduct(data) {
-		await addDoc(collection(db, "Products"), data);
-	//	console.log("Document written with ID: ", docRef.id);
+		//each product is contained in a separate document collection "Products"
+		await setDoc(doc(db, "Products", `${data.id}`), data);
+	},
+
+	async deleteDoc(documentId) {
+		await deleteDoc(doc(db, "Products", `${documentId}`));
 	}
 
 }
