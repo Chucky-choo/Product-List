@@ -6,6 +6,7 @@ export const useStyles = makeStyles({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
+		margin: 20,
 	},
 	p: {
 		alignItems: 'center',

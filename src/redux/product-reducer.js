@@ -9,31 +9,50 @@ const ADD_PRODUCT = 'ADD_PRODUCT'
 const productReducer = (state = [], action) => {
 	switch (action.type) {
 		case SORT: {
-			if (action.sort === 'count') {
-				return [
-					...state.sort((a, b) => {
-						return b.count - a.count
-					})
-				]
-			} else if (action.sort === 'name') {
-				return [
-					...state.sort((a, b) => {
-						{
-							let nameA = a.name.toLowerCase()
-							let nameB = b.name.toLowerCase()
-							if (nameA < nameB) {
-								return -1
-							} else if (nameA > nameB) {
-								return 1
-							} else {
-								return 0
+			switch (action.sort){
+				case 'a-z': {
+					return [
+						...state.sort((a, b) => {
+							{
+								let nameA = a.name.toLowerCase()
+								let nameB = b.name.toLowerCase()
+								if (nameA < nameB) {return -1
+								} else if (nameA > nameB) {return 1
+								} else {return 0}
 							}
-						}
-					})
-				]
-			} else {
-				break
+						})
+					]
+				}
+				case 'z-a': {
+					return [
+						...state.sort((a, b) => {
+							{
+								let nameA = a.name.toLowerCase()
+								let nameB = b.name.toLowerCase()
+								if (nameA > nameB) {return -1
+								} else if (nameA < nameB) {return 1
+								} else {return 0}
+							}
+						})
+					]
+				}
+				case 'many-small': {
+					return [
+						...state.sort((a, b) => {
+							return b.count - a.count
+						})
+					]
+				}
+				case 'small-many': {
+					return [
+						...state.sort((a, b) => {
+							return a.count - b.count
+						})
+					]
+				}
+				default: return state
 			}
+
 		}
 		case DELETE_PRODUCT: {
 			const newProducts = state.filter(el => el.id !== action.idProduct)
