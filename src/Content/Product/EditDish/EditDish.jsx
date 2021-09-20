@@ -1,21 +1,15 @@
 import React, {useState} from 'react';
 import {Formik} from 'formik';
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import Button from "@material-ui/core/Button";
-import {useStyles} from "../ProductListStyle";
-import {addNewProduct} from "../../../redux/product-reducer";
-import {Validatione} from "./Validatione";
 import Popup from "../../Popup/Popup";
-import DishForm from "./DishForm";
+import DishForm from "../../ProductList/CreateNewDish/DishForm";
+import {Validatione} from "../../ProductList/CreateNewDish/Validatione";
+import {EditProduct} from "../../../redux/product-reducer";
 
 
-const CreateNewDish = () => {
-	const style = useStyles()
+const EditDish = ({initialValues}) => {
 	const dispatch = useDispatch()
-
-
-	const lengthArray = useSelector(store => store.product.length)
-	const lastElementId = useSelector(store => store.product[lengthArray - 1].id)
 
 
 	const [open, setOpen] = useState(false);
@@ -29,13 +23,13 @@ const CreateNewDish = () => {
 	};
 
 	return (
-		<div className={style.root}>
+		<div>
 			<Button
 				variant="contained"
 				color="primary"
 				onClick={handleClickOpen}
 			>
-				add Dish
+				Edit
 			</Button>
 			<Popup
 				isOpenPopup={open}
@@ -45,28 +39,18 @@ const CreateNewDish = () => {
 				{
 					<Formik
 						initialValues={
-							{
-								name: '',
-								imageUrl: '',
-								count: '',
-								description: '',
-								weight: '',
-								size: {
-									height: '',
-									width: '',
-								}
-							}
+							{...initialValues}
 						}
 						validationSchema={Validatione}
 						onSubmit={(values, {setSubmitting}) => {
-							dispatch(addNewProduct({...values, id: lastElementId + 1}))
+							dispatch(EditProduct(values))
 							setSubmitting(false);
 							handleClose()
 						}}
 					>
 						<DishForm
 							handleClose={handleClose}
-							nameRightBtn={'Add'}
+							nameRightBtn={'Edit'}
 						/>
 					</Formik>
 				}
@@ -75,4 +59,4 @@ const CreateNewDish = () => {
 	);
 }
 
-export default CreateNewDish;
+export default EditDish;

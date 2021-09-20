@@ -3,14 +3,14 @@ import ProductList from "./Content/ProductList/ProductList";
 import {Redirect, Route, Switch} from "react-router-dom";
 import Product from "./Content/Product/Product";
 import {useDispatch, useSelector} from "react-redux";
-import {addDataProducts} from "./redux/product-reducer";
+import {getDataProducts} from "./redux/product-reducer";
 import {CircularProgress, Grid} from "@material-ui/core";
 
 
 function App() {
 	const dispatch = useDispatch()
 
-	useEffect(async () => {dispatch(addDataProducts())}, [])
+	useEffect(async () => {dispatch(getDataProducts())}, [])
 
 	const usersData = useSelector(store => store.product)
 

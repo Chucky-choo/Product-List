@@ -7,8 +7,7 @@ export const useStyles = makeStyles({
 		padding: 20,
 		display: 'flex',
 		alignItems: 'start',
-		width: '100%',
-		height: '100vh',
+		height: '30vh',
 	},
 	img:{
 		width: '50%'
@@ -19,6 +18,15 @@ export const useStyles = makeStyles({
 		flexDirection: "column",
 		alignItems: 'center',
 		padding: 32,
-	}
+	},
+	'@media (max-width: 600px)': {
+		root: {
+			flexDirection: "column",
+			height: 'auto',
+		},
+		img:{
+			width: '100%'
+		},
 
+	}
 });

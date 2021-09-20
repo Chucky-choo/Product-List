@@ -5,6 +5,7 @@ const ProductInfo = ({name, size, count, weight, description}) => {
 	return (
 		<div>
 			<Typography
+				align='center'
 				noWrap
 				gutterBottom
 				variant="h3"

@@ -29,17 +29,9 @@ const useStyles = makeStyles({
 	media: {
 		height: 180,
 	},
-	content: {
-		width: 185,
+	cardActions: {
 		display: "flex",
 		justifyContent: 'space-around',
-		textDecoration: 'none',
-		color: 'black',
-		maxHeight: 320,
-		'&:hover': {
-			textDecoration: 'none',
-			color: "black"
-		}
 	},
 });
 
