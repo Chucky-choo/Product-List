@@ -39,7 +39,7 @@ const Product = (props) => {
 			>
 				Comments
 			</Typography>
-			<Comments CommentsArr={Product}/>
+			<Comments commentsArr={Product.comments} />
 		</div>
 
 	);

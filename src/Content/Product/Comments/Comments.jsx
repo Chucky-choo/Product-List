@@ -1,53 +1,57 @@
 import React from 'react';
-import {Typography} from "@material-ui/core";
+import {IconButton, Typography} from "@material-ui/core";
 import Paper from '@material-ui/core/Paper';
-import {makeStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
-
-const useStyles = makeStyles((theme) => ({
-	root: {
-		flexGrow: 1,
-		overflow: 'hidden',
-		padding: theme.spacing(0, 3),
-	},
-	paper: {
-		maxWidth: '80%',
-		margin: `${theme.spacing(1)}px auto`,
-		padding: theme.spacing(2),
-	},
-}));
+import DeleteIcon from '@material-ui/icons/Delete';
+import {deleteComment} from "../../../redux/product-reducer";
+import {useDispatch} from "react-redux";
+import NewComment from "./NewComment/NewComment";
+import {useStyles} from "./CommentsStyle";
 
 
-const Comments = ({CommentsArr}) => {
-	const comments = CommentsArr.comments
+const Comments = ({commentsArr}) => {
+
 	const classes = useStyles();
+	const dispatch = useDispatch()
 
-	if (comments === undefined) {
-		return null
-	}
+
+	// if (commentsArr.length === 0) {
+	// 	return	<NewComment commentsArr={commentsArr}/>
+	// }
 
 	return (
-		<div>
-			<div className={classes.root}>
-				{comments.map(comment => {
-						return (
-							<Paper className={classes.paper}>
-								<Grid container wrap="nowrap" spacing={2}>
-									<Grid item>
-										<Avatar>ava</Avatar>
-									</Grid>
-									<Grid item xs>
-										<Typography>
-											{comment.description}
-										</Typography>
-									</Grid>
+		<div className={classes.root}>
+			<Paper className={classes.paper}>
+				<NewComment commentsArr={commentsArr}/>
+			</Paper>
+			{commentsArr.map(comment => {
+					return (
+						<Paper key={comment.id} className={classes.paper}>
+							<Grid container wrap="nowrap" spacing={1}>
+								<Grid item>
+									<Avatar>ava</Avatar>
 								</Grid>
-							</Paper>
-						)
-					}
-				)}
-			</div>
+								<Grid item xs>
+									<Typography>
+										{comment.description}
+									</Typography>
+								</Grid>
+								<IconButton
+									onClick={() => {
+										dispatch(deleteComment(comment))
+									}}
+									aria-label="delete"
+									size="medium"
+								>
+									<DeleteIcon fontSize="inherit"/>
+								</IconButton>
+							</Grid>
+						</Paper>
+					)
+				}
+			)}
+
 		</div>
 	)
 };

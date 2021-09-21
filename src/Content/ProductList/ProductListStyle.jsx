@@ -12,5 +12,9 @@ export const useStyles = makeStyles({
 		alignItems: 'center',
 		fontSize: 25,
 		marginRight: 10
-	}
+	},
+	formControl: {
+		margin: 10,
+		minWidth: 120,
+	},
 });

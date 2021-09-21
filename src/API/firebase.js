@@ -1,5 +1,11 @@
 import {initializeApp} from "firebase/app";
-import {collection, getDocs, getFirestore, setDoc, doc, deleteDoc } from "firebase/firestore/lite";
+import {
+	collection,
+	getDocs, getFirestore,
+	setDoc, doc, deleteDoc,
+	updateDoc, arrayUnion, arrayRemove
+
+} from "firebase/firestore/lite";
 
 
 const firebaseConfig = {
@@ -34,6 +40,28 @@ export const firebase = {
 
 	async deleteDoc(documentId) {
 		await deleteDoc(doc(db, "Products", `${documentId}`));
-	}
+	},
+
+// Add a new comment to the "Products"
+	async addNewComment(dataComment) {
+		// in the dataComment it is necessary to specify which 'Product' the comment belongs to.
+		await updateDoc(doc(db, "Products", `${dataComment.productId}`), {
+			comments: arrayUnion(dataComment)
+		});
+	},
+
+	async deleteComment(dataComment) {
+		await updateDoc(doc(db, "Products", `${dataComment.productId}`), {
+			comments: arrayRemove(dataComment)
+		});
+	},
+
 
 }
+
+
+// firebase.addNewComment({
+// 	description: "addNewComment",
+// 	id: 3,
+// 	productId: 3,
+// })

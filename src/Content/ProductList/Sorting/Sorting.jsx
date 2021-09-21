@@ -19,11 +19,11 @@ const Sorting = () => {
 	return (
 		<div className={style.root}>
 			<Box sx={{minWidth: 120}}>
-				<FormControl fullWidth>
-					<InputLabel id="demo-simple-select-label">sort by</InputLabel>
+				<FormControl variant="outlined" className={style.formControl}>
+					<InputLabel id="demo-simple-select-outlined-label">sort by</InputLabel>
 					<Select
-						labelId="demo-simple-select-label"
-						id="demo-simple-select"
+						labelId="demo-simple-select-outlined-label"
+						id="demo-simple-select-outlined"
 						value={name}
 						label="Age"
 						onChange={handleChange}
