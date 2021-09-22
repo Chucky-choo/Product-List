@@ -59,7 +59,11 @@ const CreateNewDish = () => {
 						}
 						validationSchema={Validatione}
 						onSubmit={(values, {setSubmitting}) => {
-							dispatch(addNewProduct({...values, id: lastElementId + 1}))
+							dispatch(addNewProduct({
+								...values,
+								id: lastElementId + 1,
+								comments: []
+							}))
 							setSubmitting(false);
 							handleClose()
 						}}

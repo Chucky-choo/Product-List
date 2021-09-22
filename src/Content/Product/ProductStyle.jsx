@@ -2,15 +2,17 @@ import {makeStyles} from "@material-ui/core/styles";
 
 
 export const useStyles = makeStyles({
+
 	root: {
-		overflow: 'hidden',
 		padding: 20,
 		display: 'flex',
 		alignItems: 'start',
-		height: '30vh',
+		height: '100%',
+		maxHeight: '600px'
 	},
 	img:{
-		width: '50%'
+		maxHeight: '600px',
+		overflow: 'hidden',
 	},
 	info: {
 		display: 'flex',
@@ -27,6 +29,5 @@ export const useStyles = makeStyles({
 		img:{
 			width: '100%'
 		},
-
 	}
 });

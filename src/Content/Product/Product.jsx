@@ -5,6 +5,7 @@ import ProductInfo from "../ProductInfo/ProductInfo";
 import {Typography} from "@material-ui/core";
 import Comments from "./Comments/Comments";
 import EditDish from "./EditDish/EditDish";
+import Grid from "@material-ui/core/Grid";
 
 const Product = (props) => {
 	const style = useStyles()
@@ -19,8 +20,15 @@ const Product = (props) => {
 
 	return (
 		<div>
-			<div className={style.root}>
-				<img className={style.img} src={Product.imageUrl} alt=""/>
+			<Grid
+				justifyContent='center'
+				className={style.root}
+			>
+				<img
+					className={style.img}
+					src={Product.imageUrl}
+					alt=""
+				/>
 				<div className={style.info}>
 					<ProductInfo
 						name={Product.name}
@@ -31,7 +39,7 @@ const Product = (props) => {
 					/>
 					<EditDish initialValues={Product}/>
 				</div>
-			</div>
+			</Grid>
 			<Typography
 				variant="h4"
 				gutterBottom
@@ -41,7 +49,6 @@ const Product = (props) => {
 			</Typography>
 			<Comments commentsArr={Product.comments} />
 		</div>
-
 	);
 };
 
