@@ -15,7 +15,7 @@ const Product = (props) => {
 
 	const ProductsData = useSelector(store => store.product)
 
-	const Product = ProductsData.find(item => item.id === +matchId);
+	const Product = ProductsData.find(item => item.id === matchId);
 
 
 	return (

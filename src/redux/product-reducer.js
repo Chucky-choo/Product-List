@@ -134,15 +134,15 @@ export const getDataProducts = () => {
 
 export const addNewProduct = (newProductData) => {
 	return async (dispatch) => {
-		await firebase.addNewDocumentProduct(newProductData)
-		dispatch(addProduct(newProductData))
+		const idElm = await firebase.addNewDocumentProduct(newProductData)
+		dispatch(addProduct({...newProductData, id: idElm}))
 	}
 }
 
 export const EditProduct = (EditProductData) => {
 	return async (dispatch) => {
 		//the content will be overwritten by the newly provided data
-		await firebase.addNewDocumentProduct(EditProductData)
+		await firebase.updateProduct(EditProductData)
 		dispatch(EditProductAC(EditProductData))
 	}
 }

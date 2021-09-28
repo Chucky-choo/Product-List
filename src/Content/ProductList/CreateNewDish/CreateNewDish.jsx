@@ -17,7 +17,6 @@ const CreateNewDish = () => {
 	const lengthArray = useSelector(store => store.product.length)
 	const lastElementId = useSelector(store => store.product[lengthArray - 1].id)
 
-
 	const [open, setOpen] = useState(false);
 
 	const handleClickOpen = () => {
@@ -58,14 +57,15 @@ const CreateNewDish = () => {
 							}
 						}
 						validationSchema={Validatione}
-						onSubmit={(values, {setSubmitting}) => {
+						onSubmit={(values, {setSubmitting, resetForm}) => {
 							dispatch(addNewProduct({
 								...values,
-								id: lastElementId + 1,
+								// id: lastElementId + 1,
 								comments: []
 							}))
 							setSubmitting(false);
 							handleClose()
+							resetForm()
 						}}
 					>
 						<DishForm

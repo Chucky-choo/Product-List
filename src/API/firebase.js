@@ -3,7 +3,7 @@ import {
 	collection,
 	getDocs, getFirestore,
 	setDoc, doc, deleteDoc,
-	updateDoc, arrayUnion, arrayRemove
+	updateDoc, arrayUnion, arrayRemove, addDoc
 
 } from "firebase/firestore/lite";
 
@@ -35,8 +35,18 @@ export const firebase = {
 	// Add a new document in collection "Products"
 	async addNewDocumentProduct(data) {
 		//each product is contained in a separate document collection "Products"
-		await setDoc(doc(db, "Products", `${data.id}`), data);
+		const docRef = await addDoc(collection(db, "Products"), data);
+		//add the generated Firebase id to the data new product
+		await updateDoc(doc(db, "Products", `${docRef.id}`), {
+			id: docRef.id
+		})
+		return docRef.id
 	},
+
+	async updateProduct(data) {
+		await updateDoc(doc(db, "Products", `${data.id}`), data)
+	},
+
 
 	async deleteDoc(documentId) {
 		await deleteDoc(doc(db, "Products", `${documentId}`));
@@ -60,8 +70,19 @@ export const firebase = {
 }
 
 
-// firebase.addNewComment({
-// 	description: "addNewComment",
-// 	id: 3,
-// 	productId: 3,
-// })
+
+//to install standard products
+const setTemplate = async () => {
+	const oldArr = await firebase.getData()
+	 oldArr.forEach(obg => {
+		firebase.deleteDoc(obg.id)
+	})
+
+	const productsCol = collection(db, 'ProductsTemplate');
+	const productSnapshot = await getDocs(productsCol);
+	const productsColList = productSnapshot.docs.map(doc => doc.data())
+
+	productsColList.forEach(obg => {
+		firebase.addNewDocumentProduct(obg)
+	})
+}

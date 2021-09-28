@@ -20,7 +20,7 @@ const Sorting = () => {
 		<div className={style.root}>
 			<Box sx={{minWidth: 120}}>
 				<FormControl variant="outlined" className={style.formControl}>
-					<InputLabel id="demo-simple-select-outlined-label">sort by</InputLabel>
+					<InputLabel id="demo-simple-select-outlined-label">Sort</InputLabel>
 					<Select
 						labelId="demo-simple-select-outlined-label"
 						id="demo-simple-select-outlined"

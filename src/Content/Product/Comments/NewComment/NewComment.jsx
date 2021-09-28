@@ -20,7 +20,7 @@ const Validat = yup.object().shape({
 const NewComment = ({commentsArr}) => {
 
 	let {idProduct} = useParams();
-	const productId = +idProduct
+	const productId = idProduct
 
 
 	const generateId = () => {
@@ -30,8 +30,6 @@ const NewComment = ({commentsArr}) => {
 		} else {
 			return commentsArr[lengthArr - 1].id + 1
 		}
-
-
 	}
 
 	const dispatch = useDispatch()
