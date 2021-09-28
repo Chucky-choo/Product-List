@@ -2,9 +2,8 @@ import {initializeApp} from "firebase/app";
 import {
 	collection,
 	getDocs, getFirestore,
-	setDoc, doc, deleteDoc,
+	doc, deleteDoc,
 	updateDoc, arrayUnion, arrayRemove, addDoc
-
 } from "firebase/firestore/lite";
 
 
@@ -65,24 +64,23 @@ export const firebase = {
 			comments: arrayRemove(dataComment)
 		});
 	},
-
-
 }
 
 
 
 //to install standard products
-const setTemplate = async () => {
-	const oldArr = await firebase.getData()
-	 oldArr.forEach(obg => {
-		firebase.deleteDoc(obg.id)
-	})
 
-	const productsCol = collection(db, 'ProductsTemplate');
-	const productSnapshot = await getDocs(productsCol);
-	const productsColList = productSnapshot.docs.map(doc => doc.data())
-
-	productsColList.forEach(obg => {
-		firebase.addNewDocumentProduct(obg)
-	})
-}
+// const setTemplate = async () => {
+// 	const oldArr = await firebase.getData()
+// 	 oldArr.forEach(obg => {
+// 		firebase.deleteDoc(obg.id)
+// 	})
+//
+// 	const productsCol = collection(db, 'ProductsTemplate');
+// 	const productSnapshot = await getDocs(productsCol);
+// 	const productsColList = productSnapshot.docs.map(doc => doc.data())
+//
+// 	productsColList.forEach(obg => {
+// 		firebase.addNewDocumentProduct(obg)
+// 	})
+// }

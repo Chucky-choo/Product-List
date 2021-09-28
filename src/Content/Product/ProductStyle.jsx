@@ -26,8 +26,11 @@ export const useStyles = makeStyles({
 			flexDirection: "column",
 			height: 'auto',
 		},
-		img:{
+		img: {
 			width: '100%'
 		},
+		info: {
+			padding: '20px 0',
+		}
 	}
 });

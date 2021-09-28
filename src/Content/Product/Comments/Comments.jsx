@@ -16,10 +16,6 @@ const Comments = ({commentsArr}) => {
 	const dispatch = useDispatch()
 
 
-	// if (commentsArr.length === 0) {
-	// 	return	<NewComment commentsArr={commentsArr}/>
-	// }
-
 	return (
 		<div className={classes.root}>
 			<Paper className={classes.paper}>
@@ -27,8 +23,15 @@ const Comments = ({commentsArr}) => {
 			</Paper>
 			{commentsArr.map(comment => {
 					return (
-						<Paper key={comment.id} className={classes.paper}>
-							<Grid container wrap="nowrap" spacing={1}>
+						<Paper
+							key={comment.id}
+							className={classes.paper}
+						>
+							<Grid
+								container
+								wrap="nowrap"
+								spacing={1}
+							>
 								<Grid item>
 									<Avatar>ava</Avatar>
 								</Grid>
@@ -38,9 +41,7 @@ const Comments = ({commentsArr}) => {
 									</Typography>
 								</Grid>
 								<IconButton
-									onClick={() => {
-										dispatch(deleteComment(comment))
-									}}
+									onClick={() => {dispatch(deleteComment(comment))}}
 									aria-label="delete"
 									size="medium"
 								>
@@ -51,7 +52,6 @@ const Comments = ({commentsArr}) => {
 					)
 				}
 			)}
-
 		</div>
 	)
 };

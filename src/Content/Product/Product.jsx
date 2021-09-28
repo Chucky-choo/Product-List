@@ -5,13 +5,13 @@ import ProductInfo from "../ProductInfo/ProductInfo";
 import {Typography} from "@material-ui/core";
 import Comments from "./Comments/Comments";
 import EditDish from "./EditDish/EditDish";
-import Grid from "@material-ui/core/Grid";
+
 
 const Product = (props) => {
 	const style = useStyles()
 
 
-	let matchId = props.match.params.idProduct
+	const matchId = props.match.params.idProduct
 
 	const ProductsData = useSelector(store => store.product)
 
@@ -20,10 +20,7 @@ const Product = (props) => {
 
 	return (
 		<div>
-			<Grid
-				justifyContent='center'
-				className={style.root}
-			>
+			<div className={style.root}>
 				<img
 					className={style.img}
 					src={Product.imageUrl}
@@ -39,7 +36,7 @@ const Product = (props) => {
 					/>
 					<EditDish initialValues={Product}/>
 				</div>
-			</Grid>
+			</div>
 			<Typography
 				variant="h4"
 				gutterBottom

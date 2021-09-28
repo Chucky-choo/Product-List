@@ -1,7 +1,9 @@
 import React from 'react';
 import {Typography} from "@material-ui/core";
 
+
 const ProductInfo = ({name, size, count, weight, description}) => {
+
 	return (
 		<div>
 			<Typography

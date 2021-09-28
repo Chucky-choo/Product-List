@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Formik} from 'formik';
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import Button from "@material-ui/core/Button";
 import {useStyles} from "../ProductListStyle";
 import {addNewProduct} from "../../../redux/product-reducer";
@@ -13,9 +13,6 @@ const CreateNewDish = () => {
 	const style = useStyles()
 	const dispatch = useDispatch()
 
-
-	const lengthArray = useSelector(store => store.product.length)
-	const lastElementId = useSelector(store => store.product[lengthArray - 1].id)
 
 	const [open, setOpen] = useState(false);
 
@@ -58,11 +55,7 @@ const CreateNewDish = () => {
 						}
 						validationSchema={Validatione}
 						onSubmit={(values, {setSubmitting, resetForm}) => {
-							dispatch(addNewProduct({
-								...values,
-								// id: lastElementId + 1,
-								comments: []
-							}))
+							dispatch(addNewProduct({...values, comments: []}))
 							setSubmitting(false);
 							handleClose()
 							resetForm()
